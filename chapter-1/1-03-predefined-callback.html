@@ -6,14 +6,21 @@
 <script src="../prism.js"></script>
 
 <script>
-var cities = ['Tokyo', 'London', 'Boston', 'Berlin', 'Chicago', 'New York'];
+function execute() { 
+  var cities = ['Tokyo', 'London', 'Boston', 'Berlin', 'Chicago', 'New York'];
 
-function callback(city) {
-	console.log(city);
+  function callback(city) {
+    console.log(city.split(""));
+  }
+
+  cities.forEach(callback);
 }
-
-cities.forEach(callback);
 </script>
+
+<div>
+<button id ="invoke" onclick="execute()">Submit! </button>
+(view output in console - press Ctrl-Alt-i)   
+</div>
 
 </head>
 <body>
@@ -29,7 +36,7 @@ cities.forEach(callback);
 var cities = ['Tokyo', 'London', 'Boston', 'Berlin', 'Chicago', 'New York'];
 
 function callback(city) {
-	console.log(city);
+	console.log(city.split(""));
 }
 
 cities.forEach(callback);

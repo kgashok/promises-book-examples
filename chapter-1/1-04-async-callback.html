@@ -6,14 +6,20 @@
 <script src="../prism.js"></script>
 
 <script>
-function repositionElement() {
-	console.log('repositioning!');
-	// ...
-}
+function execute() {   
+  function repositionElement() {
+    console.log('repositioning!');
+    // ...
+  }
 
-window.requestAnimationFrame(repositionElement);
-console.log('I am the last line of the script');
+  window.requestAnimationFrame(repositionElement);
+  console.log('I am the last line of the script');
+}
 </script>
+<div>
+<button id ="invoke" onclick="execute()">Submit! </button>
+(view output in console - press Ctrl-Alt-i)   
+</div>
 
 </head>
 <body>
@@ -24,6 +30,7 @@ console.log('I am the last line of the script');
 
 <h1>Example 1-4. A callback being invoked asynchronously</h1>
 
+  
 <pre>
 <code class="language-javascript">
 function repositionElement() {
