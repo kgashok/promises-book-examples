@@ -29,7 +29,26 @@ fs.readFile('date.txt', function (err, data) {
 console.log('Comparing the contents'); // 1
 console.assert(timestamp == contents); // 2 - FAIL!
 </code>
+<caption>
+  Console output:
+
+  Comparing the contents
+(node:67) [DEP0013] DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+AssertionError [ERR_ASSERTION]
+    at Console.assert (console.js:190:23)
+    at evalmachine.anonymous:15:9
+    at Script.runInContext (vm.js:74:29)
+    at Object.runInContext (vm.js:182:6)
+    at evaluate (/run_dir/repl.js:133:14)
+    at ReadStream.anonymous (/run_dir/repl.js:116:5)
+    at ReadStream.emit (events.js:180:13)
+    at addChunk (_stream_readable.js:274:12)
+    at readableAddChunk (_stream_readable.js:261:11)
+    at ReadStream.Readable.push (_stream_readable.js:218:10)
+</caption>
 </pre>
+<a href="https://repl.it/@kgashok/js107-naive-async-fileio" target="_">repl.it</a>
+<iframe height="400px" width="100%" src="https://repl.it/@kgashok/js107-naive-async-fileio?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
 </body>
 </html>
