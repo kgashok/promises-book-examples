@@ -6,9 +6,10 @@
 <script src="../prism.js"></script>
 
 <script>
-loadImage('shadowfacts.png',
+loadImage('https://j.mp/shadowfacts',
 	function onsuccess(img) {
 		console.log('received image');
+    document.body.appendChild(img);
 	},
 	function onerror(e) {
 		console.log('Error occurred while loading image');

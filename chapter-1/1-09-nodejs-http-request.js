@@ -2,6 +2,12 @@
 
 var http = require('http');
 
-http.get('http://www.google.com', function (res) {
+/*
+http.get('https://www.google.com', function (res) {
+	console.log('got a response');
+});
+*/
+
+http.get('https://api.myjson.com/bins/skw8e', function (res) {
 	console.log('got a response');
 });

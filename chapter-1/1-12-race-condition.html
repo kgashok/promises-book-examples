@@ -6,19 +6,23 @@
 <script src="../prism.js"></script>
 
 <script>
-var async = true;
-var xhr = new XMLHttpRequest();
-xhr.open('get', 'data.json', async);
-xhr.send();
+function execute() {
+  var async = true;
+  var xhr = new XMLHttpRequest();
+  xhr.open('get', 'data.json', async);
+  xhr.send();
 
-setTimeout(function delayed() { // Creates race condition!
-	function listener() {
-		console.log('greetings from listener');
-	}
+  setTimeout(function delayed() { // Creates race condition!
+    function listener() {
+      console.log('greetings from listener');
+    }
 
-	xhr.addEventListener('load', listener);
-	xhr.addEventListener('error', listener);
-}, 3000);
+    xhr.addEventListener('load', listener);
+    xhr.addEventListener('error', listener);
+  }, 200);
+  
+  console.log("This is the last line");
+}
 </script>
 
 </head>
@@ -45,7 +49,17 @@ setTimeout(function delayed() { // Creates race condition!
 	xhr.addEventListener('load', listener);
 	xhr.addEventListener('error', listener);
 }, 3000);
+
+console.log("This is the last line");
+
 </code>
+<caption>
+  // Invoke with the function execute() in the console 
+  // Clue: It works with 500! Or even lower, at 200!
+  console output: 
+    This is the last line
+    greetings from listener (depends upon setTimeout delay value)
+</caption>
 </pre>
 
 </body>
