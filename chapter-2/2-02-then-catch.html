@@ -6,22 +6,34 @@
 <script src="../prism.js"></script>
 
 <script>
-var promise = loadImage('the_general_problem.png');
+function execute() { 
+  var url = 'https://j.mp/generalProblem';
+  var promise = loadImage(url); // 'https://j.mp/generalProblem');
 
-promise.then(function (img) {
-	console.log('received image');
-});
 
-promise.catch(function (e) {
-	console.log('Error occurred while loading image');
-	console.log(e);
-});
+  promise.then(function (img) {
+    console.log('received image');
+    console.log(img);
 
-// Additional code so example can run
-function loadImage(url) {
-	return new Promise(function (resolve) {
-		resolve(new Image());
-	});
+    if (document.body !== null) 
+      document.body.appendChild(img);
+    else
+      console.log ("DOM not yet loaded!"); 
+  });
+
+  promise.catch(function (e) {
+    console.log('Error occurred while loading image');
+    console.log(e);
+  });
+
+  // Additional code so example can run
+  function loadImage(url) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.src = url;
+      resolve(img);
+    });
+  }
 }
 </script>
 
@@ -33,20 +45,39 @@ function loadImage(url) {
 </nav>
 
 <h1>Example 2-2. Promise then and catch</h1>
-
+<div>
+<button id ="invoke" onclick="execute()">Submit! </button>
+(view output in console - press Ctrl-Alt-i and look for image insertion below)   
+</div>
+  
 <pre>
 <code class="language-javascript">
-// Assume loadImage returns a promise
-var promise = loadImage('the_general_problem.png');
+var url = 'https://j.mp/generalProblem';
+var promise = loadImage(url); // 'https://j.mp/generalProblem');
+
 
 promise.then(function (img) {
-	console.log('received image');
+  console.log('received image');
+  console.log(img);
+
+  if (document.body !== null) 
+    document.body.appendChild(img);
+  else
+    console.log ("DOM not yet loaded!"); 
 });
 
 promise.catch(function (e) {
-	console.log('Error occurred while loading image');
-	console.log(e);
+  console.log('Error occurred while loading image');
+  console.log(e);
 });
+
+// Additional code so example can run
+function loadImage(url) {
+  return new Promise(function (resolve) {
+    var img = new Image();
+    img.src = url;
+    resolve(img);
+  });
 </code>
 </pre>
 

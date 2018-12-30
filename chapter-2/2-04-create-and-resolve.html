@@ -6,22 +6,33 @@
 <script src="../prism.js"></script>
 
 <script>
-function loadImage(url) {
-	var promise = new Promise(
-		function resolver(resolve, reject) {
-			var img = new Image();
-			img.src = url;
-			
-			img.onload = function () {
-				resolve(img);
-			};
+function execute() { 
+  loadImage('https://bit.ly/killYouSoon').then(function (img) {
+    console.log('received image');
+    document.body.appendChild(img); 
+      
+  }).catch(function (e) {
+    console.log('Error occurred while loading image');
+    console.log(e);
+  });
 
-			img.onerror = function (e) {
-				reject(e);
-			};
-		}
-	);
-	return promise;
+  function loadImage(url) {
+    var promise = new Promise(
+      function resolver(resolve, reject) {
+        var img = new Image();
+        img.src = url;
+
+        img.onload = function () {
+          resolve(img);
+        };
+
+        img.onerror = function (e) {
+          reject(e);
+        };
+      }
+    );
+    return promise;
+  }
 }
 </script>
 
@@ -33,10 +44,21 @@ function loadImage(url) {
 </nav>
 
 <h1>Example 2-4. Creating and resolving a promise</h1>
-
+<div>
+<button id ="invoke" onclick="execute()">Submit! </button>
+(view output in console - press Ctrl-Alt-i and look for image insertion below)   
+</div>
+  
 <pre>
 <code class="language-javascript">
-function loadImage(url) {
+  loadImage('https://bit.ly/killYouSoon').then(function (img) {
+    console.log('received image');
+  }).catch(function (e) {
+    console.log('Error occurred while loading image');
+    console.log(e);
+  });
+  
+  function loadImage(url) {
 	var promise = new Promise(
 		function resolver(resolve, reject) {
 			var img = new Image();
