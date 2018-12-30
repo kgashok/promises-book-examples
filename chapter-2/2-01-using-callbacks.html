@@ -6,28 +6,30 @@
 <script src="../prism.js"></script>
 
 <script>
-loadImage('https://j.mp/shadowfacts',
-	function onsuccess(img) {
-		console.log('received image');
-    document.body.appendChild(img);
-	},
-	function onerror(e) {
-		console.log('Error occurred while loading image');
-		console.log(e);
-	}
-);
+function execute() { 
+  loadImage('https://j.mp/shadowfacts',
+    function onsuccess(img) {
+      console.log('received image');
+      document.body.appendChild(img);
+    },
+    function onerror(e) {
+      console.log('Error occurred while loading image');
+      console.log(e);
+    }
+  );
 
-function loadImage(url, success, error) {
-	var img = new Image();
-	img.src = url;
+  function loadImage(url, success, error) {
+    var img = new Image();
+    img.src = url;
 
-	img.onload = function () {
-		success(img);
-	};
+    img.onload = function () {
+      success(img);
+    };
 
-	img.onerror = function (e) {
-		error(e);
-	};
+    img.onerror = function (e) {
+      error(e);
+    };
+  }
 }
 </script>
 
@@ -38,11 +40,16 @@ function loadImage(url, success, error) {
 <a href="../chapter-1/1-12-race-condition.html">Previous</a> | <a href="2-02-then-catch.html">Next</a>
 </nav>
 
+<div>
+<button id ="invoke" onclick="execute()">Submit! </button>
+(view output in console - press Ctrl-Alt-i and see inserted image below)   
+</div>
+  
 <h1>Example 2-1. Using callbacks</h1>
 
 <pre>
 <code class="language-javascript">
-loadImage('shadowfacts.png',
+loadImage('http://j.mp/shadowfacts',
 	function onsuccess(img) {
 		console.log('received image');
 	},
