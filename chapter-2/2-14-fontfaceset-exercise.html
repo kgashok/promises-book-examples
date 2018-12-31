@@ -81,6 +81,11 @@ function execute() {
     // The 'ready' promise resolves if this is the case
     document.fonts.ready.then((fontFaceSet) => {
       console.log(fontFaceSet.size, 'FontFaces loaded.');
+      
+      fontFaceSet.forEach(function(face) {
+        console.log(face); 
+      });
+
     });
 
   } else {
@@ -109,11 +114,12 @@ function execute() {
 <h1>Example 2-14. Exercise on FontFaceSet loading</h1>
 <p>
   <ul>
-    Credits: <a href="https://medium.com/@matuzo/getting-started-with-css-font-loading-e24e7ffaa791">CSS Font Loading</a>
+    Credits: <a href="https://medium.com/@matuzo/getting-started-with-css-font-loading-e24e7ffaa791" target = "_"
+                >CSS Font Loading</a>
   </ul>
   <ul>
-     Also see: <a href="https://webkit.org/blog/6643/improved-font-loading/">Improved font loading</a> 
-  
+     Also see: <a href="https://webkit.org/blog/6643/improved-font-loading/" target = "_" 
+                  >Improved font loading</a> 
   </ul>
 </p>
 <pre>
@@ -156,6 +162,11 @@ if(document.fonts) {
   // The 'ready' promise resolves if this is the case
   document.fonts.ready.then((fontFaceSet) =&gt {
     console.log(fontFaceSet.size, 'FontFaces loaded.');
+    
+    fontFactSet.forEach(function(face) {
+      console.log(face); 
+    });
+    
   });
   
 } else {

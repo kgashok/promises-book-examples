@@ -63,6 +63,13 @@ function getPun() {
 	});
 }
 
+// Additional code so example can run
+function ajax(url) {
+	return Promise.resolve(JSON.stringify({
+		content: 'The pet store job was ruff!'
+	}));
+}
+
 // Console output:
 // The pet store job was ruff!
 // Maybe I should stick to programming
