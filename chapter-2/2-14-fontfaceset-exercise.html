@@ -17,10 +17,10 @@
 </style>
 <script src="../prism.js"></script>
 
-<script>
+<script defer>
 
-// Track if all fonts (if there are multiple) have been loaded
-// The 'ready' promise resolves if this is the case
+// $(document).ready(function() { 
+
 document.fonts.ready.then((fontFaceSet) => {
   console.log(fontFaceSet.size, 'FontFaces loaded.');
 });
@@ -50,6 +50,7 @@ function execute() {
     console.info('Current status', notoSansRegular.status);
 
     // Wait until the font has been loaded, log the current status.
+    // Here is the real-world use case of the Promise API
     notoSansRegular.loaded.then((fontFace) => {
       console.info('Current status', fontFace.status);
       console.log(fontFace.family, 'loaded successfully.');
@@ -72,6 +73,8 @@ function execute() {
     console.error('Sorry, unsupported browser');
   }
 }
+// });
+  
 
 </script>
 
@@ -86,7 +89,12 @@ function execute() {
 <button id ="invoke" onclick="execute()">Submit! </button>
 (view output in console - press Ctrl-Alt-i)   
 </div>
-  
+
+<h3>
+Console output:  
+</h3>
+<div id="log"></div>
+
 <h1>Example 2-14. Exercise on FontFaceSet loading</h1>
 
 <pre>
@@ -150,6 +158,24 @@ Noto Sans Regular loaded successfully.
 </caption>
 </code>
 </pre>
-
 </body>
+  
+<script defer> 
+  var log = document.querySelector('#log');
+
+  ['log','debug','info','warn','error'].forEach(function (verb) {
+    console[verb] = (function (method, verb, log) {
+        return function () {
+            method.apply(console, arguments);
+            var msg = document.createElement('div');
+            msg.classList.add(verb);
+            msg.textContent = verb + ': ' + Array.prototype.slice.call(arguments).join(' ');
+            log.append(msg);
+        };
+    })(console[verb], verb, log);
+    
+});
+  
+
+</script>
 </html>
