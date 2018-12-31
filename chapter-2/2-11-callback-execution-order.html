@@ -8,11 +8,11 @@
 <script>
 var promise = new Promise(function (resolve, reject) {
 	console.log('Inside the resolver function');    // 1
-	resolve();
+	resolve('from resolve');
 });
 
-promise.then(function () {
-	console.log('Inside the onFulfilled handler');  // 3
+promise.then(function (res) {
+	console.log('Inside the onFulfilled handler <-- ' + res);  // 3
 });
 
 console.log('This is the last line of the script'); // 2
@@ -31,11 +31,11 @@ console.log('This is the last line of the script'); // 2
 <code class="language-javascript">
 var promise = new Promise(function (resolve, reject) {
 	console.log('Inside the resolver function');    // 1
-	resolve();
+	resolve('from resolve');
 });
 
-promise.then(function () {
-	console.log('Inside the onFulfilled handler');  // 3
+promise.then(function (res) {
+	console.log('Inside the onFulfilled handler &lt-- ' + res);  // 3
 });
 
 console.log('This is the last line of the script'); // 2

@@ -8,9 +8,9 @@
 <script>
 // Equivalent ways to create a resolved promise
 new Promise(function (resolve, reject) {
-	resolve('the long way')
+	resolve(console.log('the long way'))
 });
-Promise.resolve('the short way');
+Promise.resolve(console.log('the short way'));
 
 // Equivalent ways to create a rejected promise
 new Promise(function (resolve, reject) {
