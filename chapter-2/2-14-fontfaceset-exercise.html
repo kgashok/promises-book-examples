@@ -139,6 +139,7 @@ if(document.fonts) {
   console.info('Current status', notoSansRegular.status);
 
   // Wait until the font has been loaded, log the current status.
+  // Here is the real-world use case of the Promise API
   notoSansRegular.loaded.then((fontFace) =&gt {
     console.info('Current status', fontFace.status);
     console.log(fontFace.family, 'loaded successfully.');
