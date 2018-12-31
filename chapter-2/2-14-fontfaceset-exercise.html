@@ -14,6 +14,19 @@
       font-family: 'Noto Sans Regular', Helvetica, sans-serif;
   }
   
+  #log {
+    margin: 10px 0px;
+    border: 1px solid black;
+    display: block;
+    white-space: pre;
+    font-family: monospace;
+  }
+  #log:before {
+    content: "log javascript:";
+    font-style: italic;
+    color: #555;
+  }
+  
 </style>
 <script src="../prism.js"></script>
 
@@ -90,9 +103,6 @@ function execute() {
 (view output in console - press Ctrl-Alt-i)   
 </div>
 
-<h3>
-Console output:  
-</h3>
 <div id="log"></div>
 
 <h1>Example 2-14. Exercise on FontFaceSet loading</h1>
