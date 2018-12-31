@@ -46,6 +46,13 @@ accounts.forEach(function (account) {
 	});
 });
 
+// Additional code so example can run
+function ajax(url) {
+	ajax.balances = ajax.balances || [384, 509, 0];
+	return Promise.resolve(ajax.balances.shift());
+}
+
+
 // Console output:
 // Updating balance information...
 // Checking Account Balance: 384

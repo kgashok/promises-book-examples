@@ -191,7 +191,8 @@ Noto Sans Regular loaded successfully.
 </pre>
 </body>
   
-<script defer> 
+<script defer>
+  //
   var log = document.querySelector('#log');
 
   ['log','debug','info','warn','error'].forEach(function (verb) {
@@ -200,13 +201,33 @@ Noto Sans Regular loaded successfully.
             method.apply(console, arguments);
             var msg = document.createElement('div');
             msg.classList.add(verb);
-            msg.textContent = verb + ': ' + Array.prototype.slice.call(arguments).join(' ');
+            //msg.textContent = verb + ': ' + Array.slice.call(arguments).join(' ');
+            msg.textContent = verb + ': ' + argumentsForPrint(arguments);
             log.append(msg);
         };
     })(console[verb], verb, log);
     
+
+  // thanks to https://googlechrome.github.io/samples/font-face-set/
+  function argumentsForPrint(arguments) { 
+    var alist = Array.prototype.slice.call(arguments);
+    if (alist.length == 1) {
+      // this should really work, but doesn't! 
+      //return JSON.stringify(arguments[0], null, 4); 
+      //
+      // real hack! May work only for FontFace object
+      // where return JSON.stringify(arguments, null, 4); 
+      //
+      alist = ["FontFace:\n"];
+      fontFace = arguments[0];
+      for (var property in fontFace) {
+        alist.push ('  ' + property + ': ' + fontFace[property] + "\n"); 
+      }
+    }
+    return alist.join(' ');  
+  }
 });
-  
+
 
 </script>
 </html>
