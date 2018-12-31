@@ -6,23 +6,9 @@
 <script src="../prism.js"></script>
 
 <script>
-rejectWith('bad news').then(
-	function step2() {
-		console.log('This is never run');
-	}
-).catch(
-	function (error) {
-		console.log('Foiled again!');
-		console.log(error); // Error object with message: 'bad news'
-	}
-);
 
-function rejectWith(val) {
-	return new Promise(function (resolve, reject) {
-		throw Error(val);
-		resolve('Not used'); // This line is never run
-	});
-}
+  console.log ("No script yet!"); 
+  
 </script>
 
 </head>
