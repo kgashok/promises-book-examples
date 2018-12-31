@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>2-13. Rejecting a promise by throwing an error in the constructor callback</title>
+<title>2-14. Exercise on FontFaceSet loading</title>
 <link href="../prism.css" rel="stylesheet">
 <script src="../prism.js"></script>
 
@@ -29,30 +29,18 @@ function rejectWith(val) {
 <body>
 
 <nav>
-<a href="2-12-end-chain-with-catch.html">Previous</a> | <a href="2-14-fontfaceset-exercise.html">Next</a>
+<a href="2-13-reject-using-throw.html">Previous</a> | <a href="../chapter-3/3-01-async-ripple-effect.html">Next</a>
 </nav>
 
-<h1>Example 2-13. Rejecting a promise by throwing an error in the constructor callback</h1>
+<h1>Example 2-14. Exercise on FontFaceSet loading</h1>
 
 <pre>
 <code class="language-javascript">
-rejectWith('bad news').then(
-	function step2() {
-		console.log('This is never run');
-	}
-).catch(
-	function (error) {
-		console.log('Foiled again!');
-		console.log(error); // Error object with message: 'bad news'
-	}
-);
 
-function rejectWith(val) {
-	return new Promise(function (resolve, reject) {
-		throw Error(val);
-		resolve('Not used'); // This line is never run
-	});
-}
+<h2>
+  Code to be added
+</h2>
+
 
 // Console output:
 // Foiled again!
