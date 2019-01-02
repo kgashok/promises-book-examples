@@ -49,9 +49,13 @@ function ajax(url) {
 <nav>
 <a href="3-07-aggregate-tasks.html">Previous</a> | <a href="3-09-parallel-with-loop.html">Next</a>
 </nav>
-
+  
 <h1>Example 3-8. Running code after multiple operations have finished, regardless of their
 outcome</h1>
+  
+  <h3>
+     Also see MDN documentation for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#Return_value">Promise onFulFilled</a>
+  </h3>
 
 <pre>
 <code class="language-javascript">
@@ -77,6 +81,12 @@ settled(requests).then(function (outcomes) {
 	});
 	console.log(count + ' out of ' + outcomes.length + ' balances were updated');
 });
+
+// Additional code so example can run
+function ajax(url) {
+	ajax.balances = ajax.balances || [384, 509, 0];
+	return Promise.resolve(ajax.balances.shift());
+}
 
 // Console output (varies based on requests):
 // 3 out of 3 balances were updated
