@@ -1,0 +1,14 @@
+#log {
+  margin: 10px 0px;
+  border: 1px solid black;
+  display: block;
+  white-space: pre;
+  font-family: monospace;
+  background-color: beige;
+}
+
+#log:before {
+  content: "log javascript:";
+  font-style: italic;
+  color: #555;
+}
