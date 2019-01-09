@@ -39,6 +39,7 @@ settled(requests).then(function (outcomes) {
 // Additional code so example can run
 function ajax(url) {
 	ajax.balances = ajax.balances || [384, 509, 0];
+  console.log(ajax.balances, " is a value"); 
 	return Promise.resolve(ajax.balances.shift());
 }
 </script>
