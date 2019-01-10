@@ -7,6 +7,7 @@
   <script src="../prism.js"></script>
   <script src="../console.js" defer></script>
   <script defer>
+    
   function execute() { 
     // Make an async HTTP request
     var async = true;
@@ -26,7 +27,25 @@
 
     xhr.addEventListener('load', listener);
     xhr.addEventListener('error', listener);
+    
+    
   }
+  function load(url) {
+    console.log("Trying to get ", url);
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.timeout = 1000;
+    xhr.send();
+
+    xhr.onload = function() {
+      console.log(`Loaded: ${this.status} ${this.responseText}`);
+    };
+
+    xhr.onerror = () => console.log('Error');
+
+    xhr.ontimeout = () => console.log('Timeout!');
+  }
+    
   </script>
 
 </head>
@@ -37,16 +56,22 @@
 </nav>
 
 <div>
+  <button onclick="load('hello.txt')">Load</button>
+  <button onclick="load('helloSlow.txt?speed=0')">Load with timeout</button>
+  <button onclick="load('no-such-page')">Load 404</button>
+  <button onclick="load('https://www.kgisl.com')">Load another domain</button>
+</div>
+<br>
+<div>
   <button id ="invoke" onclick="execute()">Submit! </button>
   (view output in console - press Ctrl-Alt-i)   
+  
+  
 </div>
 
 <div id="log"></div>
 <h1>Example 1-1. Async XHR</h1>
 
-<h3>
-   Also see <a href="https://javascript.info/xmlhttprequest">https://javascript.info/xmlhttprequest</a>
-</h3>
 
 <pre>
 <code class="language-javascript">
@@ -68,6 +93,33 @@ function listener() {
 
 xhr.addEventListener('load', listener);
 xhr.addEventListener('error', listener);
+</code>
+</pre>
+  
+<h3>
+   Also see <a href="https://javascript.info/xmlhttprequest">https://javascript.info/xmlhttprequest</a>
+</h3>
+
+<pre>
+<code class="language-javascript">
+/////////////////////////
+// load function 
+/////////////////////////
+function load(url) {
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+  xhr.timeout = 1000;
+  xhr.send();
+
+  xhr.onload = function() {
+    console.log(`Loaded: ${this.status} ${this.responseText}`);
+  };
+
+  xhr.onerror = () => console.log('Error');
+
+  xhr.ontimeout = () => console.log('Timeout!');
+}
+    
 </code>
 </pre>
 
