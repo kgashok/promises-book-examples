@@ -10,13 +10,30 @@
 <script>
 function execute() {   
   function repositionElement() {
-    console.log('repositioning!');
+    console.log('single call to reposition!');
     // ...
   }
 
   window.requestAnimationFrame(repositionElement);
   console.log('I am the last line of the script');
+
+  var start = null;
+  var element = document.getElementById('invoke');
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    var progress = timestamp - start;
+    element.style.transform = 'translateX(' + Math.min(progress / 10, 200) + 'px)';
+    if (progress < 3000) {
+      window.requestAnimationFrame(step);
+    }
+  }
+  console.log('=========================\n');
+  console.log('Starting animation of "Submit" button'); 
+  window.requestAnimationFrame(step);
 }
+  
+  
 </script>
 
 </head>
@@ -50,5 +67,27 @@ console.log('I am the last line of the script');
 </code>
 </pre>
 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame#Notes"
+   target="_">
+ From MDN documentation
+</a>
+  
+<pre>
+<code class="language-javascript">
+  var start = null;
+  var element = document.getElementById('invoke');
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    var progress = timestamp - start;
+    element.style.transform = 'translateX(' + Math.min(progress / 10, 200) + 'px)';
+    if (progress &lt 3000) {
+      window.requestAnimationFrame(step);
+    }
+  }
+  console.log('=========================\n');
+  console.log('Starting animation of "Submit" button'); 
+  window.requestAnimationFrame(step);
+</code></pre>
 </body>
 </html>
