@@ -1,3 +1,5 @@
+![image](https://cdn.glitch.com/9c695e9a-74a8-49f5-b0f1-5fc35a894f3a%2Ffavicon.ico?1546186372935)
+
 # promises-book-examples
 Code examples from "JavaScript with Promises: Managing Asynchronous Code"
 
