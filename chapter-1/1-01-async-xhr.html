@@ -38,12 +38,24 @@
         console.log("Trying to get ", url);
         let xhr = new XMLHttpRequest();
         xhr.open("GET", url);
-        xhr.timeout = 1000;
+        xhr.timeout = 5000;
         xhr.send();
 
         xhr.onload = function() {
           console.log(`Loaded: ${this.status} ${this.responseText}`);
         };
+        
+        /*xhr.open("GET", url, true);
+        xhr.onreadystatechange = function (oEvent) {
+          if (xhr.readyState === 4) {
+          } else { 
+            if (xhr.status === 200) {
+              console.log("onreadystatechange: ", xhr.responseText);
+            } else { 
+              console.log("onreadystatechange: Error", xhr.statusText);
+            }
+          }
+        };*/
 
         xhr.onerror = () => console.log("Error");
 
@@ -61,7 +73,7 @@
       <button onclick="load('hello.txt')">Load</button>
       <button onclick="load('helloSlow.txt?speed=0')">Load with timeout</button>
       <button onclick="load('no-such-page')">Load 404</button>
-      <button onclick="load('https://www.kgisl.com')">
+      <button onclick="load('https://quasar-rate.glitch.me/')">
         Load another domain
       </button>
     </div>
@@ -119,8 +131,10 @@ function load(url) {
     console.log(`Loaded: ${this.status} ${this.responseText}`);
   };
 
+  // on error, this is the function that gets called
   xhr.onerror = () =&gt console.log('Error');
 
+  // on timeout, this is the function that gets called
   xhr.ontimeout = () =&gt console.log('Timeout!');
 }
     
