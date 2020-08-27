@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>1-1. Async XHR</title>
-  <link href="../console.css" rel="stylesheet">
-  <link href="../prism.css" rel="stylesheet">
-  <script src="../prism.js"></script>
-  <script src="../console.js" defer></script>
-  <script defer>
-    
-  function execute() { 
-    // Make an async HTTP request
-    var async = true;
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', 'data.json', async);
-    xhr.send();
+  <head>
+    <title>1-1. Async XHR</title>
+    <link href="../console.css" rel="stylesheet" />
+    <link href="../prism.css" rel="stylesheet" />
+    <script src="../prism.js"></script>
+    <script src="../console.js" defer></script>
+    <script defer>
+      // clicking the "Submit" button invokes this function
+      function execute() {
+        // Make an async HTTP request
+        var async = true;
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "data.json", async);
+        xhr.send();
 
-    // Create a three second delay (don't do this in real life)
-    var timestamp = Date.now() + 3000;
-    while (Date.now() < timestamp);
+        // Create a three second delay (don't do this in real life)
+        var timestamp = Date.now() + 3000;
+        while (Date.now() < timestamp)
+          ;
 
-    // Now that three seconds have passed,
-    // add a listener to the xhr.load and xhr.error events
-    function listener() {
-      console.log('greetings from listener');
-    }
+        // Now that three seconds have passed,
+        // add a listener to the xhr.load and xhr.error events
+        function listener() {
+          console.log("after 3000ms: Greetings from listener");
+        }
 
-    xhr.addEventListener('load', listener);
-    xhr.addEventListener('error', listener);
-    
-    
-  }
-  function load(url) {
-    console.log("Trying to get ", url);
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.timeout = 1000;
-    xhr.send();
+        xhr.addEventListener("load", listener);
+        xhr.addEventListener("error", listener);
+      }
+      
+      // clicking any of the top four buttons, invokes this function
+      // with specific values for 'url'
+      //   - sometimes, filenames (like hello.txt and helloSlow.txt)
+      //   - sometimes, actual URLs
+      function load(url) {
+        console.log("Trying to get ", url);
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.timeout = 1000;
+        xhr.send();
 
-    xhr.onload = function() {
-      console.log(`Loaded: ${this.status} ${this.responseText}`);
-    };
+        xhr.onload = function() {
+          console.log(`Loaded: ${this.status} ${this.responseText}`);
+        };
 
-    xhr.onerror = () => console.log('Error');
+        xhr.onerror = () => console.log("Error");
 
-    xhr.ontimeout = () => console.log('Timeout!');
-  }
-    
-  </script>
+        xhr.ontimeout = () => console.log("Timeout!");
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a href="../index.html">Previous</a> |
+      <a href="1-02-example-callback.html">Next</a>
+    </nav>
 
-</head>
-<body>
+    <div>
+      <button onclick="load('hello.txt')">Load</button>
+      <button onclick="load('helloSlow.txt?speed=0')">Load with timeout</button>
+      <button onclick="load('no-such-page')">Load 404</button>
+      <button onclick="load('https://www.kgisl.com')">
+        Load another domain
+      </button>
+    </div>
+    <br />
+    <div>
+      <button id="invoke" onclick="execute()">Submit!</button>
+      (view output in console - press Ctrl-Shift-i)
+    </div>
 
-<nav>
-<a href="../index.html">Previous</a> | <a href="1-02-example-callback.html">Next</a>
-</nav>
+    <div id="log"></div>
+    <h1>Example 1-1. Async XHR</h1>
 
-<div>
-  <button onclick="load('hello.txt')">Load</button>
-  <button onclick="load('helloSlow.txt?speed=0')">Load with timeout</button>
-  <button onclick="load('no-such-page')">Load 404</button>
-  <button onclick="load('https://www.kgisl.com')">Load another domain</button>
-</div>
-<br>
-<div>
-  <button id ="invoke" onclick="execute()">Submit! </button>
-  (view output in console - press Ctrl-Shift-i)   
-  
-  
-</div>
-
-<div id="log"></div>
-<h1>Example 1-1. Async XHR</h1>
-
-
-<pre>
+    <pre>
 <code class="language-javascript">
 // Make an async HTTP request
 var async = true;
@@ -95,12 +96,15 @@ xhr.addEventListener('load', listener);
 xhr.addEventListener('error', listener);
 </code>
 </pre>
-  
-<h3>
-   Also see <a href="https://javascript.info/xmlhttprequest">https://javascript.info/xmlhttprequest</a>
-</h3>
 
-<pre>
+    <h3>
+      Also see
+      <a href="https://javascript.info/xmlhttprequest"
+        >https://javascript.info/xmlhttprequest</a
+      >
+    </h3>
+
+    <pre>
 <code class="language-javascript">
 /////////////////////////
 // load function 
@@ -115,13 +119,12 @@ function load(url) {
     console.log(`Loaded: ${this.status} ${this.responseText}`);
   };
 
-  xhr.onerror = () => console.log('Error');
+  xhr.onerror = () =&gt console.log('Error');
 
-  xhr.ontimeout = () => console.log('Timeout!');
+  xhr.ontimeout = () =&gt console.log('Timeout!');
 }
     
 </code>
 </pre>
-
-</body>
+  </body>
 </html>
