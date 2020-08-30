@@ -40,8 +40,9 @@
         xhr.open("GET", url);
         
         // CORS issue resolution doesn't work 
-        xhr.setRequestHeader ("Accept", "text/xml");
-        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        //xhr.setRequestHeader ("Accept", "text/xml");
+        //xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xhr.withCredentials = false;
 
         xhr.timeout = 5000;
         xhr.send();
