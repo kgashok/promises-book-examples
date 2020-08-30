@@ -38,6 +38,11 @@
         console.log("Trying to get ", url);
         let xhr = new XMLHttpRequest();
         xhr.open("GET", url);
+        
+        // CORS issue resolution doesn't work 
+        xhr.setRequestHeader ("Accept", "text/xml");
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
         xhr.timeout = 5000;
         xhr.send();
 
@@ -73,7 +78,10 @@
       <button onclick="load('hello.txt')">Load</button>
       <button onclick="load('helloSlow.txt?speed=0')">Load with timeout</button>
       <button onclick="load('no-such-page')">Load 404</button>
-      <button onclick="load('https://quasar-rate.glitch.me/')">
+      <!-- still causes error 
+        <button onclick="load('https://www.google.com/')">
+      -->
+      <button onclick="load('https://cors-anywhere.herokuapp.com/https://www.kgisl.com/')">
         Load another domain
       </button>
     </div>
